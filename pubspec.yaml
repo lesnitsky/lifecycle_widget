@@ -1,7 +1,7 @@
 name: lifecycle_widget
 description: Flutter widget with lifecycle methods
 version: 0.0.1
-author: Andrei Lesnitsky <andrei.lesnitsky@gmail.com>
+homepage: https://github.com/lesnitsky/lifecycle_widget
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
