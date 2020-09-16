@@ -3,6 +3,39 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:lifecycle_widget/lifecycle_widget.dart';
 
+class TestWidget extends LifecycleWidget {
+  final int number;
+
+  const TestWidget({Key key, this.number}) : super(key: key);
+
+  void notify(BuildContext context, String text) {
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(text),
+    ));
+  }
+
+  @override
+  void didMount(BuildContext context) {
+    notify(context, 'did mount');
+    super.didMount(context);
+  }
+
+  @override
+  void didUpdate(
+    BuildContext context,
+    covariant TestWidget oldWidget,
+    covariant TestWidget widget,
+  ) {
+    notify(context, 'update ${oldWidget.number} => ${widget.number}');
+    super.didUpdate(context, oldWidget, widget);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Text("number is $number"));
+  }
+}
+
 void main() {
   LifecycleWidget.debugLog = true;
 
@@ -58,41 +91,8 @@ class _HomeState extends State<Home> {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [if (m) TestWidget(prop: prop)],
+        children: [if (m) TestWidget(number: prop)],
       ),
     );
-  }
-}
-
-class TestWidget extends LifecycleWidget {
-  final int prop;
-
-  const TestWidget({Key key, this.prop}) : super(key: key);
-
-  void notify(BuildContext context, String text) {
-    Scaffold.of(context).showSnackBar(SnackBar(
-      content: Text(text),
-    ));
-  }
-
-  @override
-  void didMount(BuildContext context) {
-    notify(context, 'did mount');
-    super.didMount(context);
-  }
-
-  @override
-  void didUpdate(
-    BuildContext context,
-    covariant TestWidget oldWidget,
-    covariant TestWidget widget,
-  ) {
-    notify(context, 'update ${oldWidget.prop} => ${widget.prop}');
-    super.didUpdate(context, oldWidget, widget);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text("number is $prop"));
   }
 }
