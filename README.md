@@ -13,7 +13,7 @@ Add dependency to `pubspec.yaml`
 ```yaml
 dependencies:
   ...
-  lifecycle_widget: ^0.0.1
+  lifecycle_widget: ^0.0.2
 ```
 
 Run in your terminal
@@ -50,6 +50,13 @@ class TestWidget extends LifecycleWidget {
   ) {
     notify(context, 'update ${oldWidget.number} => ${widget.number}');
     super.didUpdate(context, oldWidget, widget);
+  }
+
+  @override
+  void willUnmount() {
+    // no access to context in willUnmount
+    print('will unmount');
+    super.willUnmount();
   }
 
   @override

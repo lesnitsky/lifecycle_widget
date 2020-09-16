@@ -31,6 +31,13 @@ class TestWidget extends LifecycleWidget {
   }
 
   @override
+  void willUnmount() {
+    // no access to context in willUnmount
+    print('will unmount');
+    super.willUnmount();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Center(child: Text("number is $number"));
   }
