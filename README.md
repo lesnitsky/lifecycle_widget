@@ -13,7 +13,7 @@ Add dependency to `pubspec.yaml`
 ```yaml
 dependencies:
   ...
-  lifecycle_widget: ^0.0.2
+  lifecycle_widget: ^1.0.0
 ```
 
 Run in your terminal
