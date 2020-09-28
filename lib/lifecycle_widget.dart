@@ -1,7 +1,7 @@
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 
-abstract class Lifecylce<T> {
+abstract class Lifecycle<T> {
   void didMount(BuildContext context);
   bool shouldUpdate(BuildContext context, T prevValue, T newValue);
   void didUpdate(BuildContext context, T prevValue, T currentValue);
@@ -54,7 +54,7 @@ class LifecycleElement extends ComponentElement {
 
 @immutable
 abstract class LifecycleWidget extends Widget
-    implements Lifecylce<LifecycleWidget> {
+    implements Lifecycle<LifecycleWidget> {
   static bool debugLog = false;
 
   const LifecycleWidget({Key key}) : super(key: key);
