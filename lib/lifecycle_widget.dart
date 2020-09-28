@@ -35,7 +35,7 @@ class LifecycleElement extends ComponentElement {
   @override
   void unmount() {
     mounted = false;
-    widget.willUnmount();
+    widget.willUnmount(this);
     super.unmount();
   }
 
@@ -88,7 +88,7 @@ abstract class LifecycleWidget extends Widget {
     }());
   }
 
-  void willUnmount() {
+  void willUnmount(BuildContext context) {
     assert(() {
       if (debugLog) {
         print('$runtimeType will unmount');

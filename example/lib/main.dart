@@ -31,10 +31,9 @@ class TestWidget extends LifecycleWidget {
   }
 
   @override
-  void willUnmount() {
-    // no access to context in willUnmount
+  void willUnmount(BuildContext context) {
     print('will unmount');
-    super.willUnmount();
+    super.willUnmount(context);
   }
 
   @override
